@@ -1,0 +1,99 @@
+$bg-color: #000000;
+$primary-color: #ffffff;
+$secondary-color: #CCCCCC;
+
+/*screen resolutions*/
+$break-xsmall: 320px;
+$break-small-w: 640px;
+$break-medium: 768px;
+$break-large: 1024px;
+$break-xlarge: 1250px;
+
+// Small devices
+@mixin sm {
+    @media screen and (min-width: #{$break-xsmall}) and (max-width: #{$break-medium}) {
+        @content;
+    }
+}
+
+// Medium devices
+@mixin md {
+    @media screen and (min-width: #{$break-medium}) and (max-width: #{$break-large}) {
+        @content;
+    }
+}
+
+// Large devices
+@mixin lg {
+    @media screen and (min-width: #{$break-large}) {
+        @content;
+    }
+}
+
+// XLarge devices
+@mixin xlg {
+    @media screen and (min-width: #{$break-xlarge}) {
+        @content;
+    }
+}
+
+html, body {
+background-color: $bg-color;
+color: $primary-color;
+}
+
+.title{
+  font-size: 3.85rem;
+  font-variant: small-caps;
+}
+
+.subtitle{
+  font-size: 1.25rem;
+  letter-spacing: 11px;
+  margin-top: -35px;
+  margin-left: 12px;
+}
+
+.navigation{
+  border: .5px;
+  border-style: solid none;
+  border-color: $primary-color;
+  text-align: center;
+
+  a{
+    font-size: 1.25em;
+    color: $primary-color;
+    padding: 15px;
+  }
+
+  a:hover{
+    text-decoration: none;
+    color: $secondary-color;
+  }
+
+}
+
+.content{
+    text-align: justify;
+    padding: 1rem 0;
+    margin: 0 auto;
+
+    tr{
+        color: $primary-color;
+    }
+}
+
+.leftside{
+
+}
+
+.rightside{
+
+}
+
+.footer {
+  border: .5px;
+  border-style: solid none;
+  border-color: $primary-color;
+  text-align: center;
+}

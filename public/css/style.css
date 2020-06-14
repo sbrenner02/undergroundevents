@@ -1,0 +1,51 @@
+/*screen resolutions*/
+html, body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.title {
+  font-size: 3.85rem;
+  font-variant: small-caps;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  letter-spacing: 11px;
+  margin-top: -35px;
+  margin-left: 12px;
+}
+
+.navigation {
+  border: 0.5px;
+  border-style: solid none;
+  border-color: #ffffff;
+  text-align: center;
+}
+.navigation a {
+  font-size: 1.25em;
+  color: #ffffff;
+  padding: 15px;
+}
+.navigation a:hover {
+  text-decoration: none;
+  color: #CCCCCC;
+}
+
+.content {
+  text-align: justify;
+  padding: 1rem 0;
+  margin: 0 auto;
+}
+.content tr {
+  color: #ffffff;
+}
+
+.footer {
+  border: 0.5px;
+  border-style: solid none;
+  border-color: #ffffff;
+  text-align: center;
+}
+
+/*# sourceMappingURL=style.css.map */
