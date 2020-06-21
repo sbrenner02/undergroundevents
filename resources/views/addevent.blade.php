@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php include 'header.php'?>
-<body>
-<?php include 'topbar.php' ?>
-<?php include 'navbar.php' ?>
-
+@extends('layout')
+@section('content')
 <div class="row">
     <div class="col-1 leftside">This is Sidebar / Images / Ads</div>
     <div class="col-8 content">
@@ -16,7 +11,7 @@
                     <tr>
                         <td>
                     <tr>
-                        <td>Event Name</td><td><input type="text" class="custom-control w-100"></td>
+                        <td>{{ $event->name }}</td><td><input type="text" class="custom-control w-100"></td>
                     </tr>
                     <tr>
                         <td>Type of Event</td><td><input type="text" class="custom-control w-100"></td>
@@ -67,8 +62,4 @@
     </div>
     <div class="col-2 rightsde">This is a calendar to click on</div>
 </div>
-
-<?php include 'footer.php' ?>
-
-</body>
-</html>
+@endsection

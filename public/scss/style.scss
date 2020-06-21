@@ -54,6 +54,10 @@ color: $primary-color;
   margin-left: 12px;
 }
 
+.white-text{
+    color: $primary-color !important;
+}
+
 .navigation{
   border: .5px;
   border-style: solid none;

@@ -29,17 +29,9 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
-Route::get('/events', 'EventsController@show');
+Route::get('/events', 'EventsController@index');
 
-/*
-$event = array();
-$events = array();
-
-if(! array_key_exists($event, $events)){
-    abort(404, 'Event Not Found');
-}
-*/
-Route::get('/event/{event}', 'EventsController@show');
+Route::get('/events/{event}', 'EventsController@show');
 
 Auth::routes();
 

@@ -16,6 +16,10 @@ html, body {
   margin-left: 12px;
 }
 
+.white-text {
+  color: #ffffff !important;
+}
+
 .navigation {
   border: 0.5px;
   border-style: solid none;
