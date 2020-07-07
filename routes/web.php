@@ -13,12 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'EventsController@index');
 
 Route::get('/addevent', function () {
-    return view('addevent');
+    return view('events.add');
 });
 
 Route::get('/users', function () {
@@ -29,9 +27,40 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
-Route::get('/events', 'EventsController@index');
+Route::get('/contact', function () {
+    return view('contact');
+});
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+Route::get('/register', function () {
+    return view('auth.register');
+});
+
+Route::get('/verify', function () {
+    return view('auth.verify');
+});
+
+Route::get('/confirm', function () {
+    return view('auth.passwords.confirm');
+});
+
+Route::get('/email', function () {
+    return view('auth.passwords.email');
+});
+
+Route::get('/reset', function () {
+    return view('auth.passwords.reset');
+});
+
+Route::get('/events', 'EventsController@index');
 Route::get('/events/{event}', 'EventsController@show');
+Route::get('/events/{event}/edit', 'EventsController@edit');
+Route::post('/events/addevent', 'EventsController@add');
+Route::put('/events/{event}', 'EventsController@update');
+
 
 Auth::routes();
 

@@ -45,6 +45,10 @@ html, body {
   color: #ffffff;
 }
 
+.border-color {
+  border: 1px solid #ffffff;
+}
+
 .footer {
   border: 0.5px;
   border-style: solid none;
