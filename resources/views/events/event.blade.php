@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <div class="col-12 row">
+    <div class="col-12 row no-gutters">
         <div class="col-lg-8 col-sm-12">
         <table class="table">
             <tr>
@@ -10,19 +10,13 @@
                 <td nowrap>Type of Event</td><td>{{ ucfirst($event->type) }}</td>
             </tr>
             <tr>
-                <td nowrap>Created By</td><td>{{ $event->created_by_id }}</td>
+                <td nowrap>Start Time</td><td>{{ date('h:i a', strtotime($event->time)) }}</td>
             </tr>
             <tr>
-                <td nowrap>Start Time</td><td>{{ $event->time }}</td>
-            </tr>
-            <tr>
-                <td nowrap>Dates</td><td>{{ $event->date }}</td>
+                <td nowrap>Dates</td><td>{{ date('d-m-Y', strtotime($event->start_date)) }} @if($event->end_date)- {{ date('d-m-Y', strtotime($event->end_date)) }}@endif</td>
             </tr>
             <tr>
                 <td nowrap>Host</td><td>{{ $event->host }}</td>
-            </tr>
-            <tr>
-                <td nowrap>Status</td><td>{{ $event->status }}</td>
             </tr>
             <tr>
                 <td nowrap>Location</td><td>{{ $event->location }}</td>
@@ -62,7 +56,9 @@
             </div>
         </div>
     </div>
-    <div class="text-center">
+    @if($user_id == $event->host_id)
+    <div class="text-center my-4">
         <a href="/events/{{ $event->event_id }}/edit"><button class="btn btn-outline-light">Edit Event</button></a>
     </div>
+        @endif
 @endsection

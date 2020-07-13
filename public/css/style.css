@@ -36,10 +36,16 @@ html, body {
   color: #CCCCCC;
 }
 
+.topbar a, topbar a:active, topbar a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .content {
   text-align: justify;
   padding: 1rem 0;
   margin: 0 auto;
+  min-height: 30rem;
 }
 .content tr {
   color: #ffffff;
@@ -54,6 +60,31 @@ html, body {
   border-style: solid none;
   border-color: #ffffff;
   text-align: center;
+}
+
+.pagination > li > a {
+  background-color: #000000;
+  color: #5A4181;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+  color: #5a5a5a;
+  background-color: #000000;
+  border-color: #ddd;
+}
+
+.pagination > .active > a {
+  color: white;
+  background-color: #5A4181 !important;
+  border: solid 1px #5A4181 !important;
+}
+
+.pagination > .active > a:hover {
+  background-color: #5A4181 !important;
+  border: solid 1px #5A4181;
 }
 
 /*# sourceMappingURL=style.css.map */

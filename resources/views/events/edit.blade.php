@@ -1,6 +1,7 @@
 @extends('layout')
 @section('content')
     <h1 class="text-center">Edit Event</h1>
+
     <div class="col-12 row">
         <div class="col-lg-10 col-sm-12">
             <form name="updateevent" enctype="multipart/form-data" method="POST" action="/events/{{ $event->event_id }}">
@@ -8,7 +9,7 @@
                 @method('PUT')
                 <table class="table">
                     <tr>
-                        <td nowrap>Event Name</td><td><input type="text" name="name" class="form-control" value="{{ $event->name }}"></td>
+                        <td nowrap>Event Name</td><td><input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $event->name }}"></td>
                     </tr>
                     <tr>
                         <td nowrap>Type of Event</td>
@@ -26,7 +27,9 @@
                         <td nowrap>Start Time</td><td><input type="time" name="time" class="form-control" value="{{ $event->time }}"></td>
                     </tr>
                     <tr>
-                        <td nowrap>Date</td><td><input type="date" name="date" class="form-control" value="{{ $event->date }}"></td>
+                        <td nowrap>Start Date</td><td><input type="date" name="start_date" class="form-control" value="{{ $event->start_date }}"></td>
+                    </tr>
+                    <td nowrap>End Date  (if multi-day)</td><td><input type="date" name="end_date" class="form-control" value="{{ $event->end_date }}"></td>
                     </tr>
                     <tr>
                         <td nowrap>Host</td><td><input type="text" name="host" class="form-control" value="{{ $event->host }}"></td>

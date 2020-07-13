@@ -1,8 +1,9 @@
 @extends('layout')
 @section('content')
     <h1 class="text-center">Submit an Event</h1>
+    @auth
     <div class="col-12 row">
-        <div class="col-lg-10 col-sm-12">
+        <div class="col-12">
             <form name="submitevent" enctype="multipart/form-data" method="post" action="/events/addevent">
                 @csrf
             <table class="table">
@@ -25,7 +26,10 @@
                     <td nowrap>Start Time</td><td><input type="time" name="time" class="form-control" required></td>
                 </tr>
                 <tr>
-                    <td nowrap>Date</td><td><input type="date" name="date" class="form-control" required></td>
+                    <td nowrap>Start Date</td><td><input type="date" name="start_date" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td nowrap>End Date (if multi-day)</td><td><input type="date" name="end_date" class="form-control"></td>
                 </tr>
                 <tr>
                     <td nowrap>Host</td><td><input type="text" name="host" class="form-control" required></td>
@@ -68,11 +72,17 @@
                     <td nowrap>Poster</td><td><input type="file" name="poster" class="form-control"></td>
                 </tr>
                 <tr>
-                    <td nowrap>Description</td><td><textarea class="form-control" name="description" rows="20"></textarea></td>
+                    <td nowrap>Description</td><td><textarea class="form-control" name="description" rows="20" required></textarea></td>
                 </tr>
             </table>
                 <div class="col-12 text-center justify-content-center"><button class="btn btn-outline-light">Submit Event</button></div>
             </form>
         </div>
     </div>
+    @endauth
+    @guest
+        <div class="text-center py-5">
+            You must be <a href="/login">logged in</a> to submit an event
+        </div>
+    @endguest
 @endsection

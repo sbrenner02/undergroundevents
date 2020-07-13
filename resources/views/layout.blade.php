@@ -9,14 +9,17 @@
 </head>
 <body>
 @include('header')
-<div class="no-gutters justify-content-center content">
+<div class="container-fluid no-gutters content">
     <div class="row justify-content-center col-12 no-gutters">
-        <div class="col-2 text-center"></div>
+        <div class="col-2 text-center">
+
+        </div>
         <div class="col-8">
             @yield('content')
         </div>
-        <div class="col-2 text-center"></div>
+        <div class="col-2 text-center">
 
+        </div>
     </div>
 </div>
 @include('footer')

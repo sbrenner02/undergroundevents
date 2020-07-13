@@ -8,18 +8,27 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use App\Event;
 use App\Exceptions\Handler;
+use Illuminate\Support\Facades\Auth;
 
 class EventsController extends Controller
 {
     public function index()
     {
-        $events = Event::take(10)->latest()->get();
+        $events = Event::orderBy('created_at', 'desc')->paginate(1);
+
+        foreach($events as $event){
+            if (! $event->poster){
+                $event->poster = '/noposter.jpg';
+            }
+        }
 
         return view('events.events', ['events' => $events]);
     }
 
     public function show(Event $event)
     {
+
+        $user_id = Auth::id();
 
         if (! $event->address){
             $event->address = 'Not Specified';
@@ -50,11 +59,16 @@ class EventsController extends Controller
         }
 
         if (! $event->price){
-            $event->price= 'Not Specified';
+            $event->price = 'Not Specified';
+        }
+
+        if (! $event->poster){
+            $event->poster = '/noposter.jpg';
         }
 
         return view('events.event', [
-            'event' => $event
+            'event' => $event,
+            'user_id' => $user_id
         ]);
     }
 
@@ -74,22 +88,25 @@ class EventsController extends Controller
         request()->validate([
            'name' => 'required',
            'type' => 'required',
-           'date' => 'required',
+           'start_date' => 'required',
            'time' => 'required',
            'host' => 'required',
            'location' => 'required',
            'price' => 'required',
-           'poster' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+           'poster' => 'image|mimes:jpeg,png,jpg|max:5000'
         ]);
 
         $event = new Event();
 
+        $id = Auth::id();
+
         $event->name = request('name');
         $event->description = request('description');
         $event->type = request('type');
-        $event->date = request('date');
+        $event->start_date = request('start_date');
+        $event->end_date = request('end_date');
         $event->time = request('time');
-        // $event->created_by_id = request('created_by_id') TODO host_id once users exist
+        $event->host_id = $id;
         $event->host = request('host');
         $event->location = request('location');
         $event->address = request('address');
@@ -128,7 +145,7 @@ class EventsController extends Controller
         request()->validate([
             'name' => 'required',
             'type' => 'required',
-            'date' => 'required',
+            'start_date' => 'required',
             'time' => 'required',
             'host' => 'required',
             'location' => 'required',
@@ -139,7 +156,8 @@ class EventsController extends Controller
         $event->name = request('name');
         $event->description = request('description');
         $event->type = request('type');
-        $event->date = request('date');
+        $event->start_date = request('start_date');
+        $event->end_date = request('end_date');
         $event->time = request('time');
         $event->host = request('host');
         $event->location = request('location');
