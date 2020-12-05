@@ -18,8 +18,8 @@ class Events extends Migration
             $table->string('name');
             $table->longText('description');
             $table->string('type');
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->dateTime('start_date');
+            $table->dateTime('end_date')->nullable();
             $table->time('time');
             $table->integer('host_id');
             $table->string('host');

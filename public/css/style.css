@@ -8,12 +8,23 @@ html, body {
   font-size: 3.85rem;
   font-variant: small-caps;
 }
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .title {
+    font-size: 2.7rem;
+  }
+}
 
 .subtitle {
   font-size: 1.25rem;
   letter-spacing: 11px;
   margin-top: -35px;
   margin-left: 12px;
+}
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .subtitle {
+    font-size: 1rem;
+    letter-spacing: 6px;
+  }
 }
 
 .white-text {
@@ -85,6 +96,10 @@ html, body {
 .pagination > .active > a:hover {
   background-color: #5A4181 !important;
   border: solid 1px #5A4181;
+}
+
+a, a:active, a:hover, a:visited {
+  color: #ffffff;
 }
 
 /*# sourceMappingURL=style.css.map */

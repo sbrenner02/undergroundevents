@@ -14,8 +14,10 @@ class EventsController extends Controller
 {
     public function index()
     {
-        $events = Event::orderBy('created_at', 'desc')->paginate(1);
+        //Get All events that have not happened yet
+        $events = Event::whereDate('start_date', '>=', date('Y-m-d'))->orderBy('created_at', 'desc')->paginate(10);
 
+        //If the poster is empty, apply the default
         foreach($events as $event){
             if (! $event->poster){
                 $event->poster = '/noposter.jpg';
@@ -25,11 +27,27 @@ class EventsController extends Controller
         return view('events.events', ['events' => $events]);
     }
 
+    public function today()
+    {
+        //Get all events that occur today
+        $events = Event::whereDate('start_date', '=', date('Y-m-d'))->orderBy('created_at', 'desc')->paginate(10);
+
+        //If the poster is empty, apply the default
+        foreach($events as $event){
+            if (! $event->poster){
+                $event->poster = '/noposter.jpg';
+            }
+        }
+
+        return view('events.todayevents', ['events' => $events]);
+    }
+
     public function show(Event $event)
     {
 
         $user_id = Auth::id();
 
+        //Get event details or display default data if the field is empty
         if (! $event->address){
             $event->address = 'Not Specified';
         }
@@ -77,14 +95,17 @@ class EventsController extends Controller
     }
 
     protected function storeImage(Request $request) {
+        //Get the image from the post request
         $file = $request->file('poster');
         $extension = $file->getClientOriginalExtension();
+        //Set the path and save the poster
         $path = $request->file('poster')->storeAs('public/posters', $request->event_id.'.'.$extension);
         return substr($path, strlen('public/posters'));
     }
 
     public function store(Request $request){
 
+        //Validate the data
         request()->validate([
            'name' => 'required',
            'type' => 'required',
@@ -99,7 +120,7 @@ class EventsController extends Controller
         $event = new Event();
 
         $id = Auth::id();
-
+        //Get the event data
         $event->name = request('name');
         $event->description = request('description');
         $event->type = request('type');
@@ -118,6 +139,7 @@ class EventsController extends Controller
         $event->twitter = request('twitter');
         $event->instagram = request('instagram');
 
+        //Save the poster if it was provided
         if ($request->hasFile('poster'))
         {
             if ($request->file('poster')->isValid())
@@ -186,5 +208,19 @@ class EventsController extends Controller
         $event->save();
 
         return redirect('/events/' . $event->event_id)->with('message', 'Event Successfully Updated');
+    }
+
+    public function myEvents()
+    {
+        //A list of events owned by the current user
+        $events = Event::where('host_id', Auth::id())->paginate(10);
+
+        foreach($events as $event){
+            if (! $event->poster){
+                $event->poster = '/noposter.jpg';
+            }
+        }
+
+        return view('events.myevents', ['events' => $events]);
     }
 }

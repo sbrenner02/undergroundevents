@@ -12,7 +12,8 @@
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="white-text nav-item nav-link" href="/events">Events</a>
+                <a class="white-text nav-item nav-link" href="/today">Today's Events</a>
+                <a class="white-text nav-item nav-link" href="/events">Upcoming Events</a>
                 <a class="white-text nav-item nav-link" href="/addevent">Submit</a>
                 <a class="white-text nav-item nav-link" href="/contact">Contact</a>
                 @guest

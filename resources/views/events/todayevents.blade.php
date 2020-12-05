@@ -1,10 +1,10 @@
 @extends('layout')
 @section('content')
-    <h1 class="text-center">Upcoming Events</h1>
-    {{--Show a full list of all upcoming events or an empty message--}}
+    <h1 class="text-center">Today's Events</h1>
+    {{--Show today's events or a no events message--}}
 @if($events->isEmpty())
-        <div class="text-center mt-5">No Upcoming Events are currently scheduled</div>
-    @else
+    <div class="text-center mt-5">No Events are scheduled for today</div>
+@else
     @foreach($events as $event)
         <div class="col-12 row py-4 no-gutters">
             <div class="col-lg-8 col-12 row no-gutters border-color">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-sm-12 order-sm-1 border-color align-top p-0">
-                <img class="w-100" src="{{asset('/storage'.$event->poster)}}">
+                <img class="w-100" src="{{asset('/storage'.$event->poster)}}" alt="Event Poster">
             </div>
         </div>
     @endforeach

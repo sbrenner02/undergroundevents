@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+    {{--Allow valid users to submit their own events to the site--}}
     <h1 class="text-center">Submit an Event</h1>
     @auth
     <div class="col-12 row">
@@ -8,7 +9,12 @@
                 @csrf
             <table class="table">
                 <tr>
-                    <td nowrap>Event Name @error('name')<p class="alert-danger">{{ $errors->first('name') }}</p>@enderror</td><td><input type="text" name="name" class="form-control" required></td>
+                    <td nowrap>
+                        Event Name @error('name')<p class="alert-danger">{{ $errors->first('name') }}</p>@enderror
+                    </td>
+                    <td>
+                        <input type="text" name="name" class="form-control" required>
+                    </td>
                 </tr>
                 <tr>
                     <td nowrap>Type of Event</td>
@@ -23,25 +29,32 @@
                     </td>
                 </tr>
                 <tr>
-                    <td nowrap>Start Time</td><td><input type="time" name="time" class="form-control" required></td>
+                    <td nowrap>Start Time</td>
+                    <td><input type="time" name="time" class="form-control" required></td>
                 </tr>
                 <tr>
-                    <td nowrap>Start Date</td><td><input type="date" name="start_date" class="form-control" required></td>
+                    <td nowrap>Start Date</td>
+                    <td><input type="date" name="start_date" class="form-control" required></td>
                 </tr>
                 <tr>
-                    <td nowrap>End Date (if multi-day)</td><td><input type="date" name="end_date" class="form-control"></td>
+                    <td nowrap>End Date (if multi-day)</td>
+                    <td><input type="date" name="end_date" class="form-control"></td>
                 </tr>
                 <tr>
-                    <td nowrap>Host</td><td><input type="text" name="host" class="form-control" required></td>
+                    <td nowrap>Host</td>
+                    <td><input type="text" name="host" class="form-control" required></td>
                 </tr>
                 <tr>
-                    <td nowrap>Location</td><td><input type="text" name="location" class="form-control" required></td>
+                    <td nowrap>Location</td>
+                    <td><input type="text" name="location" class="form-control" required></td>
                 </tr>
                 <tr>
-                    <td nowrap>Address</td><td><input type="text" name="address" class="form-control"></td>
+                    <td nowrap>Address</td>
+                    <td><input type="text" name="address" class="form-control"></td>
                 </tr>
                 <tr>
-                    <td nowrap>Price</td><td><input type="text" name="price" class="form-control" required></td>
+                    <td nowrap>Price</td>
+                    <td><input type="text" name="price" class="form-control" required></td>
                 </tr>
                 <tr>
                     <td nowrap>Age Limit</td>
@@ -54,28 +67,37 @@
                     </td>
                 </tr>
                 <tr>
-                    <td nowrap>Tickets</td><td><input type="text" name="tickets" class="form-control"></td>
+                    <td nowrap>Tickets</td>
+                    <td><input type="text" name="tickets" class="form-control"></td>
                 </tr>
                 <tr>
-                    <td nowrap>Website</td><td><input type="text" name="website" class="form-control"></td>
+                    <td nowrap>Website</td>
+                    <td><input type="text" name="website" class="form-control"></td>
                 </tr>
                 <tr>
-                    <td nowrap>Facebook Page</td><td><input type="text" name="facebook" class="form-control"></td>
+                    <td nowrap>Facebook Page</td>
+                    <td><input type="text" name="facebook" class="form-control"></td>
                 </tr>
                 <tr>
-                    <td nowrap>Twitter</td><td><input type="text" name="twitter" class="form-control"></td>
+                    <td nowrap>Twitter</td>
+                    <td><input type="text" name="twitter" class="form-control"></td>
                 </tr>
                 <tr>
-                    <td nowrap>Instagram</td><td><input type="text" name="instagram" class="form-control"></td>
+                    <td nowrap>Instagram</td>
+                    <td><input type="text" name="instagram" class="form-control"></td>
                 </tr>
                 <tr>
-                    <td nowrap>Poster</td><td><input type="file" name="poster" class="form-control"></td>
+                    <td nowrap>Poster</td>
+                    <td><input type="file" name="poster" class="form-control"></td>
                 </tr>
                 <tr>
-                    <td nowrap>Description</td><td><textarea class="form-control" name="description" rows="20" required></textarea></td>
+                    <td nowrap>Description</td>
+                    <td><textarea class="form-control" name="description" rows="20" required></textarea></td>
                 </tr>
             </table>
-                <div class="col-12 text-center justify-content-center"><button class="btn btn-outline-light">Submit Event</button></div>
+                <div class="col-12 text-center justify-content-center">
+                    <button class="btn btn-outline-light">Submit Event</button>
+                </div>
             </form>
         </div>
     </div>

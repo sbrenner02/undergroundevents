@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'EventsController@index');
+Route::get('/today', 'EventsController@today');
 Route::get('/addevent', function () {
     return view('events.add');
 });
@@ -26,16 +27,12 @@ Route::get('/profile', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/myevents', function (){
-   return view('events.myevents');
-});
+Route::get('/myevents', 'EventsController@myEvents');
 Route::get('/events', 'EventsController@index');
 Route::get('/events/{event}', 'EventsController@show');
 Route::get('/events/{event}/edit', 'EventsController@edit');
 Route::post('/events/addevent', 'EventsController@store');
 Route::put('/events/{event}', 'EventsController@update');
-
-
 Auth::routes();
-
 Route::get('/home', 'EventsController@index')->name('home');
+Route::post('/contact/sendmessage', 'ContactController@sendMessage');

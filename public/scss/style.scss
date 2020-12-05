@@ -45,6 +45,9 @@ color: $primary-color;
 .title{
   font-size: 3.85rem;
   font-variant: small-caps;
+    @include sm{
+        font-size: 2.7rem;
+    }
 }
 
 .subtitle{
@@ -52,6 +55,10 @@ color: $primary-color;
   letter-spacing: 11px;
   margin-top: -35px;
   margin-left: 12px;
+    @include sm{
+        font-size: 1rem;
+        letter-spacing: 6px;
+    }
 }
 
 .white-text{
@@ -140,4 +147,8 @@ color: $primary-color;
 {
     background-color: #5A4181 !Important;
     border: solid 1px #5A4181;
+}
+
+a, a:active, a:hover, a:visited{
+    color: $primary-color;
 }

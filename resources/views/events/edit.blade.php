@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <h1 class="text-center">Edit Event</h1>
-
+{{--Allow valid users or admins to edit their own events--}}
     <div class="col-12 row">
         <div class="col-lg-10 col-sm-12">
             <form name="updateevent" enctype="multipart/form-data" method="POST" action="/events/{{ $event->event_id }}">
@@ -9,7 +9,9 @@
                 @method('PUT')
                 <table class="table">
                     <tr>
-                        <td nowrap>Event Name</td><td><input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $event->name }}"></td>
+                        <td nowrap>Event Name</td>
+                        <td><input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $event->name }}">
+                        </td>
                     </tr>
                     <tr>
                         <td nowrap>Type of Event</td>
@@ -24,24 +26,35 @@
                         </td>
                     </tr>
                     <tr>
-                        <td nowrap>Start Time</td><td><input type="time" name="time" class="form-control" value="{{ $event->time }}"></td>
+                        <td nowrap>Start Time</td>
+                        <td><input type="time" name="time" class="form-control" value="{{ $event->time }}">
+                        </td>
                     </tr>
                     <tr>
-                        <td nowrap>Start Date</td><td><input type="date" name="start_date" class="form-control" value="{{ $event->start_date }}"></td>
-                    </tr>
-                    <td nowrap>End Date  (if multi-day)</td><td><input type="date" name="end_date" class="form-control" value="{{ $event->end_date }}"></td>
-                    </tr>
-                    <tr>
-                        <td nowrap>Host</td><td><input type="text" name="host" class="form-control" value="{{ $event->host }}"></td>
+                        <td nowrap>Start Date</td>
+                        <td><input type="date" name="start_date" class="form-control" value="{{ date('Y-m-d',strtotime($event->start_date)) }}"></td>
                     </tr>
                     <tr>
-                        <td nowrap>Location</td><td><input type="text" name="location" class="form-control" value="{{ $event->location }}"></td>
+                        <td nowrap>End Date  (if multi-day)</td>
+                        <td>
+                            <input type="date" name="end_date" class="form-control" @if(! $event->end_date) value="{{ date('Y-m-d',strtotime($event->start_date)) }}" @else value="{{ date('Y-m-d',strtotime($event->end_date)) }}"@endif>
+                        </td>
                     </tr>
                     <tr>
-                        <td nowrap>Address</td><td><input type="text" name="address" class="form-control" value="{{ $event->address }}"></td>
+                        <td nowrap>Host</td>
+                        <td><input type="text" name="host" class="form-control" value="{{ $event->host }}"></td>
                     </tr>
                     <tr>
-                        <td nowrap>Price</td><td><input type="text" name="price" class="form-control" value="{{ $event->price }}"></td>
+                        <td nowrap>Location</td>
+                        <td><input type="text" name="location" class="form-control" value="{{ $event->location }}"></td>
+                    </tr>
+                    <tr>
+                        <td nowrap>Address</td>
+                        <td><input type="text" name="address" class="form-control" value="{{ $event->address }}"></td>
+                    </tr>
+                    <tr>
+                        <td nowrap>Price</td>
+                        <td><input type="text" name="price" class="form-control" value="{{ $event->price }}"></td>
                     </tr>
                     <tr>
                         <td nowrap>Age Limit</td>
@@ -54,22 +67,28 @@
                         </td>
                     </tr>
                     <tr>
-                        <td nowrap>Tickets</td><td><input type="text" name="tickets" class="form-control" value="{{ $event->tickets }}"></td>
+                        <td nowrap>Tickets</td>
+                        <td><input type="text" name="tickets" class="form-control" value="{{ $event->tickets }}"></td>
                     </tr>
                     <tr>
-                        <td nowrap>Website</td><td><input type="text" name="website" class="form-control" value="{{ $event->website }}"></td>
+                        <td nowrap>Website</td>
+                        <td><input type="text" name="website" class="form-control" value="{{ $event->website }}"></td>
                     </tr>
                     <tr>
-                        <td nowrap>Facebook Page</td><td><input type="text" name="facebook" class="form-control" value="{{ $event->facebook }}"></td>
+                        <td nowrap>Facebook Page</td>
+                        <td><input type="text" name="facebook" class="form-control" value="{{ $event->facebook }}"></td>
                     </tr>
                     <tr>
-                        <td nowrap>Twitter</td><td><input type="text" name="twitter" class="form-control" value="{{ $event->twitter }}"></td>
+                        <td nowrap>Twitter</td>
+                        <td><input type="text" name="twitter" class="form-control" value="{{ $event->twitter }}"></td>
                     </tr>
                     <tr>
-                        <td nowrap>Instagram</td><td><input type="text" name="instagram" class="form-control" value="{{ $event->instagram }}"></td>
+                        <td nowrap>Instagram</td>
+                        <td><input type="text" name="instagram" class="form-control" value="{{ $event->instagram }}"></td>
                     </tr>
                     <tr>
-                        <td nowrap>Poster</td><td><input type="file" name="poster" class="form-control"></td>
+                        <td nowrap>Poster</td>
+                        <td><input type="file" name="poster" class="form-control"></td>
                     </tr>
                     <tr>
                         <td nowrap>Status</td>
@@ -82,7 +101,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td nowrap>Description</td><td><textarea class="form-control" rows="20" name="description">{{ $event->description }}</textarea></td>
+                        <td nowrap>Description</td>
+                        <td><textarea class="form-control" rows="20" name="description">{{ $event->description }}</textarea></td>
                     </tr>
                 </table>
                 <div class="col-12 text-center justify-content-center"><button class="btn btn-outline-light">Update Event</button></div>
